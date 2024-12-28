@@ -2,11 +2,26 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\CreatedUpdatedID;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Participant extends Model
 {
-    /** @use HasFactory<\Database\Factories\ParticipantFactory> */
-    use HasFactory;
+    use HasFactory, SoftDeletes,CreatedUpdatedID;
+
+    protected $fillable = [
+        'participant_name',
+        'dojo_id',
+        'created_id',
+        'updated_id',
+        'deleted_id'
+    ];
+
+    // Relationship to Dojo
+    public function dojo()
+    {
+        return $this->belongsTo(Dojo::class);
+    }
 }
