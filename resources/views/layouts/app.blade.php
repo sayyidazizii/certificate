@@ -76,7 +76,7 @@
         <footer class="bg-white dark:bg-gray-800 py-1 mt-1">
             <div class="max-w-7xl mx-auto text-center text-gray-600 dark:text-gray-300">
                 <p>&copy; {{ date('Y') }} {{ config('app.name') }}. All Rights Reserved.</p>
-                <p class="text-sm">Built with ❤️ by CiptaSolutindo</p>
+                <p class="text-sm">Built with ❤️ by sayyidazizii | Karanganyar Karate</p>
             </div>
         </footer>
     </body>

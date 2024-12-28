@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DojoController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\WinnerController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CoreBranchController;
+use App\Http\Controllers\ParticipantController;
 
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
@@ -48,6 +50,24 @@ Route::prefix('dojo')->name('dojo.')->group(function () {
     Route::get('{dojo}/edit', [DojoController::class, 'edit'])->name('edit');  // Menampilkan form edit unit
     Route::put('{dojo}', [DojoController::class, 'update'])->name('update');  // Proses update unit
     Route::delete('{dojo}', [DojoController::class, 'destroy'])->name('destroy');  // Proses delete unit
+});
+
+Route::prefix('winner')->name('winner.')->group(function () {
+    Route::get('/', [WinnerController::class, 'index'])->name('index');  // Menampilkan list unit
+    Route::get('/create', [WinnerController::class, 'create'])->name('create');  // Menampilkan form create unit
+    Route::post('/', [WinnerController::class, 'store'])->name('store');  // Proses create unit
+    Route::get('{winner}/edit', [WinnerController::class, 'edit'])->name('edit');  // Menampilkan form edit unit
+    Route::put('{winner}', [WinnerController::class, 'update'])->name('update');  // Proses update unit
+    Route::delete('{winner}', [WinnerController::class, 'destroy'])->name('destroy');  // Proses delete unit
+});
+
+Route::prefix('participant')->name('participant.')->group(function () {
+    Route::get('/', [ParticipantController::class, 'index'])->name('index');  // Menampilkan list unit
+    Route::get('/create', [ParticipantController::class, 'create'])->name('create');  // Menampilkan form create unit
+    Route::post('/', [ParticipantController::class, 'store'])->name('store');  // Proses create unit
+    Route::get('{participant}/edit', [ParticipantController::class, 'edit'])->name('edit');  // Menampilkan form edit unit
+    Route::put('{participant}', [ParticipantController::class, 'update'])->name('update');  // Proses update unit
+    Route::delete('{winner}', [ParticipantController::class, 'destroy'])->name('destroy');  // Proses delete unit
 });
 
 require __DIR__.'/auth.php';
