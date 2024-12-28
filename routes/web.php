@@ -45,9 +45,9 @@ Route::prefix('dojo')->name('dojo.')->group(function () {
     Route::get('/', [DojoController::class, 'index'])->name('index');  // Menampilkan list unit
     Route::get('/create', [DojoController::class, 'create'])->name('create');  // Menampilkan form create unit
     Route::post('/', [DojoController::class, 'store'])->name('store');  // Proses create unit
-    Route::get('{CoreBranch}/edit', [DojoController::class, 'edit'])->name('edit');  // Menampilkan form edit unit
-    Route::put('{CoreBranch}', [DojoController::class, 'update'])->name('update');  // Proses update unit
-    Route::delete('{CoreBranch}', [DojoController::class, 'destroy'])->name('destroy');  // Proses delete unit
+    Route::get('{dojo}/edit', [DojoController::class, 'edit'])->name('edit');  // Menampilkan form edit unit
+    Route::put('{dojo}', [DojoController::class, 'update'])->name('update');  // Proses update unit
+    Route::delete('{dojo}', [DojoController::class, 'destroy'])->name('destroy');  // Proses delete unit
 });
 
 require __DIR__.'/auth.php';

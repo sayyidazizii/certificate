@@ -25,15 +25,15 @@
                     <span class="mx-0">-</span>
                 </li>
                 <li>
-                    <a href="{{ route('feed.index') }}" class="text-blue-600 font-semibold hover:text-blue-700">
-                        Feed
+                    <a href="{{ route('dojo.index') }}" class="text-blue-600 font-semibold hover:text-blue-700">
+                        Dojos
                     </a>
                 </li>
                 <li>
                     <span class="mx-0">-</span>
                 </li>
                 <li>
-                    <span class="text-gray-500">Edit Feed</span>
+                    <span class="text-gray-500">Edit Dojo</span>
                 </li>
             </ol>
         </nav>
@@ -42,46 +42,46 @@
         <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg overflow-hidden mx-5">
             <!-- Title and button container -->
             <div class="flex justify-between items-center mb-6 mx-8 my-2">
-                <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mx-2">Edit Feed</h1>
-                <a href="{{ route('feed.index') }}" class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2 rounded-lg inline-block transition duration-200 ease-in-out">
-                    <i class="fas fa-arrow-left mr-2"></i> Back to Feed List
+                <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mx-2">Edit Dojo</h1>
+                <a href="{{ route('dojo.index') }}" class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2 rounded-lg inline-block transition duration-200 ease-in-out">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to Dojo List
                 </a>
             </div>
 
             <!-- Edit Form -->
-            <form action="{{ route('feed.update', $feed) }}" method="POST" class="space-y-4 mx-8 my-6">
+            <form action="{{ route('dojo.update', $dojo) }}" method="POST" class="space-y-4 mx-8 my-6">
                 @csrf
                 @method('PUT')
 
-                <!-- Item_ID (Read-only) -->
+                <!-- Dojo Name -->
                 <div>
-                    <label for="item_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Item</label>
-                    <input type="text" id="item_id" name="item_id" value="{{ $feed->item->item_name }}" readonly
+                    <label for="dojo_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Dojo Name</label>
+                    <input type="text" id="dojo_name" name="dojo_name" value="{{ old('dojo_name', $dojo->dojo_name) }}" required
                         class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200">
-                </div>
 
-                <!-- Feed_Type -->
-                <div>
-                    <label for="feed_type" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Feed Type</label>
-                    <select id="feed_type" name="feed_type" required
-                        class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200">
-                        <option value="Herbivore" {{ $feed->feed_type == 'Herbivore' ? 'selected' : '' }}>Herbivore</option>
-                        <option value="Carnivore" {{ $feed->feed_type == 'Carnivore' ? 'selected' : '' }}>Carnivore</option>
-                        <option value="Omnivore" {{ $feed->feed_type == 'Omnivore' ? 'selected' : '' }}>Omnivore</option>
-                    </select>
-                    @error('feed_type')
+                    @error('dojo_name')
                         <span class="text-red-600 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
 
-                <!-- Expiration_Date -->
+                <!-- Dojo Description -->
                 <div>
-                    <label for="expiration_date" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Expiration Date</label>
-                    <input type="date" id="expiration_date" name="expiration_date" 
-                        value="{{ $feed->expiration_date ? $feed->expiration_date->format('Y-m-d') : '' }}"
+                    <label for="dojo_description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
+                    <textarea id="dojo_description" name="dojo_description"
+                        class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200">{{ old('dojo_description', $dojo->dojo_description) }}</textarea>
+
+                    @error('dojo_description')
+                        <span class="text-red-600 text-sm">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <!-- Location -->
+                <div>
+                    <label for="dojo_location" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Location</label>
+                    <input type="text" id="dojo_location" name="dojo_location" value="{{ old('dojo_location', $dojo->dojo_location) }}"
                         class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200">
 
-                    @error('expiration_date')
+                    @error('dojo_location')
                         <span class="text-red-600 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
@@ -91,7 +91,7 @@
                     <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded mr-2">
                         {{ __('Save Changes') }}
                     </button>
-                    <a href="{{ route('feed.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded">
+                    <a href="{{ route('dojo.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded">
                         {{ __('Cancel') }}
                     </a>
                 </div>

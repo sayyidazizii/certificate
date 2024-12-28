@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Log;
 use App\Models\Dojo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -57,6 +58,11 @@ class DojoController extends Controller
         } catch (\Exception $e) {
             // Rollback the transaction if something goes wrong
             DB::rollBack();
+            // Log the error
+            Log::error('Failed to create Dojo: ' . $e->getMessage(), [
+                'request' => $request->all(),
+                'exception' => $e
+            ]);
 
             // Flash error message to session
             session()->flash('error', 'Failed to create Dojo. Please try again.');
@@ -105,6 +111,13 @@ class DojoController extends Controller
         } catch (\Exception $e) {
             // Rollback the transaction if something goes wrong
             DB::rollBack();
+            // Log the error
+            \Log::error('Failed to update Dojo: ' . $e->getMessage(), [
+                'dojo_id' => $dojo->id,
+                'request' => $request->all(),
+                'exception' => $e
+            ]);
+
 
             // Flash error message to session
             session()->flash('error', 'Failed to update Dojo. Please try again.');

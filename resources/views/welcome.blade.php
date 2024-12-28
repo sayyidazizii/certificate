@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Actions</title>
+        <title>CertifyHub</title>
 
         <!-- Fonts -->
         {{-- <link rel="preconnect" href="https://fonts.bunny.net"> --}}
@@ -14,7 +14,7 @@
         <!-- Styles -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="antialiased font-sans bg-lightblue bg-cover bg-center" style="background-image: url('{{ asset('images/farmer.svg') }}');">
+    <body class="antialiased font-sans bg-lightblue bg-cover bg-center" style="background-image: url('{{ asset('images/karate.svg') }}');">
         <div class="text-black/50 dark:bg-black dark:text-white/50">
             <div class="relative min-h-screen flex items-center justify-center pl-10 selection:bg-[#FF2D20] selection:text-white">
                 <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
@@ -27,8 +27,8 @@
 
                                 <!-- Action Farm Text -->
                                 <div>
-                                    <h1 class="text-4xl sm:text-5xl font-bold text-black dark:text-white leading-tight">Actions Farm</h1>
-                                    <h4 class="text-lg sm:text-2xl text-black dark:text-white mt-2 leading-snug">Accounting Online System Farming</h4>
+                                    <h1 class="text-4xl sm:text-5xl font-bold text-black dark:text-white leading-tight">CertifyHub</h1>
+                                    <h4 class="text-lg sm:text-2xl text-black dark:text-white mt-2 leading-snug">Cetificate Online System</h4>
                                 </div>
                             </div>
 
