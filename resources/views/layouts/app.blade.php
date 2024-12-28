@@ -31,6 +31,12 @@
         <!-- DataTables JS -->
         <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
 
+        <!-- Select2 CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+        <!-- Select2 JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
         <style>
             nav[aria-label="Breadcrumb"] {
         position: relative;

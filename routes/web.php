@@ -7,6 +7,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\WinnerController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CoreBranchController;
+use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\ParticipantController;
 
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -68,6 +69,14 @@ Route::prefix('participant')->name('participant.')->group(function () {
     Route::get('{participant}/edit', [ParticipantController::class, 'edit'])->name('edit');  // Menampilkan form edit unit
     Route::put('{participant}', [ParticipantController::class, 'update'])->name('update');  // Proses update unit
     Route::delete('{winner}', [ParticipantController::class, 'destroy'])->name('destroy');  // Proses delete unit
+});
+
+Route::prefix('certificate')->name('certificate.')->group(function () {
+    Route::get('/', [CertificateController::class, 'index'])->name('index');  // Display list of certificates
+    Route::post('/', [CertificateController::class, 'store'])->name('store');  // Create a new certificate
+    Route::delete('{certificate}', [CertificateController::class, 'destroy'])->name('destroy');  // Delete a certificate by ID
+    // Route for printing the certificate
+    Route::get('print/{certificate}', [CertificateController::class, 'print'])->name('print');
 });
 
 require __DIR__.'/auth.php';
