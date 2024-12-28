@@ -26,7 +26,7 @@ return new class extends Migration
             });
             DB::table('system_menu')->insert([
                [ 'id_menu' => 1,  'id' => 'dashboard',          'type' => 'file', 'text'  => 'Dashboard','parent_id' => "#",'menu_level' => "1",],
-               [ 'id_menu' => 10, 'id' => '#',                  'type' => 'file',   'text' => 'Barang','parent_id' => "8",'menu_level' => "2",],
+               [ 'id_menu' => 10, 'id' => '#',                  'type' => 'file',   'text' => 'Data','parent_id' => "8",'menu_level' => "2",],
                [ 'id_menu' => 86, 'id' => 'participant',        'type' => 'file', 'text'  => 'Peserta','parent_id' => "10",'menu_level' => "2",],
                [ 'id_menu' => 87,'id'=>  'winner',             'type' => 'file', 'text'  => 'Juara','parent_id' => "10",'menu_level' => "2",],
                [ 'id_menu' => 88, 'id' => 'dojo',               'type' => 'file',   'text' => 'Dojo','parent_id' => "10",'menu_level' => "2",],
