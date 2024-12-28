@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Log;
 use App\Models\Winner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Log;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class WinnerController extends Controller
 {
@@ -151,6 +152,64 @@ class WinnerController extends Controller
 
             // Flash error message to session
             session()->flash('error', 'Failed to delete Winner. Please try again.');
+        }
+
+        return redirect()->route('winner.index');
+    }
+
+    public function importForm()
+    {
+        return view('content.Winner.import');
+    }
+
+    /**
+     * Handle the import of winners from an Excel file.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function import(Request $request)
+    {
+        // Validate the file
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls|max:2048',
+        ]);
+
+        try {
+            // Load the Excel file
+            $file = $request->file('file');
+            $spreadsheet = IOFactory::load($file);
+
+            // Get the first sheet
+            $sheet = $spreadsheet->getActiveSheet();
+
+            // Loop through rows and insert into the database
+            $rowIterator = $sheet->getRowIterator();
+            $isFirstRow = true;
+            foreach ($rowIterator as $row) {
+                if ($isFirstRow) {
+                    $isFirstRow = false; // Skip the first row (header)
+                    continue;
+                }
+
+                // Get the cell value for the winner name
+                $winnerName = $sheet->getCell('A' . $row->getRowIndex())->getValue();
+
+                // Insert into database
+                Winner::create([
+                    'winner_name' => $winnerName,
+                ]);
+            }
+
+            // Flash success message
+            session()->flash('success', 'Winners imported successfully.');
+        } catch (\Exception $e) {
+            // Log the error and flash an error message
+            Log::error('Failed to import Winners: ' . $e->getMessage(), [
+                'request' => $request->all(),
+                'exception' => $e
+            ]);
+            session()->flash('error', 'Failed to import Winners. Please try again.');
         }
 
         return redirect()->route('winner.index');

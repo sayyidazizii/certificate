@@ -45,13 +45,18 @@ Route::prefix('CoreBranch')->name('CoreBranch.')->group(function () {
 });
 
 Route::prefix('dojo')->name('dojo.')->group(function () {
-    Route::get('/', [DojoController::class, 'index'])->name('index');  // Menampilkan list unit
-    Route::get('/create', [DojoController::class, 'create'])->name('create');  // Menampilkan form create unit
-    Route::post('/', [DojoController::class, 'store'])->name('store');  // Proses create unit
-    Route::get('{dojo}/edit', [DojoController::class, 'edit'])->name('edit');  // Menampilkan form edit unit
-    Route::put('{dojo}', [DojoController::class, 'update'])->name('update');  // Proses update unit
-    Route::delete('{dojo}', [DojoController::class, 'destroy'])->name('destroy');  // Proses delete unit
+    Route::get('/', [DojoController::class, 'index'])->name('index');  // Menampilkan list Dojo
+    Route::get('/create', [DojoController::class, 'create'])->name('create');  // Menampilkan form create Dojo
+    Route::post('/', [DojoController::class, 'store'])->name('store');  // Proses create Dojo
+    Route::get('{dojo}/edit', [DojoController::class, 'edit'])->name('edit');  // Menampilkan form edit Dojo
+    Route::put('{dojo}', [DojoController::class, 'update'])->name('update');  // Proses update Dojo
+    Route::delete('{dojo}', [DojoController::class, 'destroy'])->name('destroy');  // Proses delete Dojo
+
+    // Add the routes for import functionality
+    Route::get('/import', [DojoController::class, 'importForm'])->name('importForm');  // Menampilkan form import Dojo
+    Route::post('/import', [DojoController::class, 'import'])->name('import');  // Proses import Dojo
 });
+
 
 Route::prefix('winner')->name('winner.')->group(function () {
     Route::get('/', [WinnerController::class, 'index'])->name('index');  // Menampilkan list unit
@@ -59,16 +64,22 @@ Route::prefix('winner')->name('winner.')->group(function () {
     Route::post('/', [WinnerController::class, 'store'])->name('store');  // Proses create unit
     Route::get('{winner}/edit', [WinnerController::class, 'edit'])->name('edit');  // Menampilkan form edit unit
     Route::put('{winner}', [WinnerController::class, 'update'])->name('update');  // Proses update unit
-    Route::delete('{winner}', [WinnerController::class, 'destroy'])->name('destroy');  // Proses delete unit
+    Route::delete('{winner}', [WinnerController::class, 'destroy'])->name('destroy');  // Proses delete
+    Route::get('import', [WinnerController::class, 'importForm'])->name('importForm');  // Import winners form
+    Route::post('import', [WinnerController::class, 'import'])->name('import');  // Process import winners
 });
 
 Route::prefix('participant')->name('participant.')->group(function () {
-    Route::get('/', [ParticipantController::class, 'index'])->name('index');  // Menampilkan list unit
-    Route::get('/create', [ParticipantController::class, 'create'])->name('create');  // Menampilkan form create unit
-    Route::post('/', [ParticipantController::class, 'store'])->name('store');  // Proses create unit
-    Route::get('{participant}/edit', [ParticipantController::class, 'edit'])->name('edit');  // Menampilkan form edit unit
-    Route::put('{participant}', [ParticipantController::class, 'update'])->name('update');  // Proses update unit
-    Route::delete('{winner}', [ParticipantController::class, 'destroy'])->name('destroy');  // Proses delete unit
+    Route::get('/', [ParticipantController::class, 'index'])->name('index');  // Menampilkan list participants
+    Route::get('/create', [ParticipantController::class, 'create'])->name('create');  // Menampilkan form create participant
+    Route::post('/', [ParticipantController::class, 'store'])->name('store');  // Proses create participant
+    Route::get('{participant}/edit', [ParticipantController::class, 'edit'])->name('edit');  // Menampilkan form edit participant
+    Route::put('{participant}', [ParticipantController::class, 'update'])->name('update');  // Proses update participant
+    Route::delete('{participant}', [ParticipantController::class, 'destroy'])->name('destroy');  // Proses delete participant
+
+    // Routes for import functionality
+    Route::get('/import', [ParticipantController::class, 'importForm'])->name('importForm');  // Show import form
+    Route::post('/import', [ParticipantController::class, 'import'])->name('import');  // Handle import
 });
 
 Route::prefix('certificate')->name('certificate.')->group(function () {

@@ -38,10 +38,17 @@
             <!-- Title and button container with justify-between -->
             <div class="flex justify-between items-center mb-6 mx-8 my-2">
                 <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mx-2">Winners</h1>
-                <a href="{{ route('winner.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg inline-block transition duration-200 ease-in-out flex items-center">
-                    <i class="fas fa-plus mr-2"></i> {{ __('Add Winner') }}
-                </a>
+
+                <div class="flex space-x-2"> <!-- Container for the buttons with space between them -->
+                    <a href="{{ route('winner.importForm') }}" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg inline-block transition duration-200 ease-in-out flex items-center">
+                        <i class="fas fa-upload mr-2"></i> {{ __('Import') }}
+                    </a>
+                    <a href="{{ route('winner.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg inline-block transition duration-200 ease-in-out flex items-center">
+                        <i class="fas fa-plus mr-2"></i> {{ __('Add Winner') }}
+                    </a>
+                </div>
             </div>
+
 
             <!-- Table Header -->
             <div class="overflow-x-auto mx-2">
